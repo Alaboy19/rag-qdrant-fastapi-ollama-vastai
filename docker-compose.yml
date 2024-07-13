@@ -11,21 +11,20 @@ services:
       - 9200:9200
       - 9300:9300
 
-  ollama:
-    image: ollama/ollama
-    container_name: ollama
-    volumes:
-      - ollama:/root/.ollama
-    ports:
-      - 11434:11434
-    # Optionally, specify a command for Ollama if needed (e.g., "ollama serve")
+#   ollama:
+#     image: ollama/ollama
+#     container_name: ollama
+#     volumes:
+#       - ollama:/root/.ollama
+#     ports:
+#       - 11434:11434
 
-  # pull_phi3:  # New service for running the command
-  #   image: ollama/ollama  # Use the same image
-  #   depends_on:
-  #     ollama:
-  #       condition: service_healthy
-  #   command: ollama pull phi3
+#   ollama-command:  # New service for running your command
+#     image: ollama/ollama  # Use the same image to have 'ollama' command available
+#     depends_on:
+#       [ollama]  # Only start after ollama is healthy
+#     entrypoint: /bin/bash  # Start a bash shell
+#     command: -c "ollama pull phi3"
 
-volumes:
-  ollama:  # Create a named volume for Ollama data
+# volumes:
+#   ollama:  # Create a named volume for Ollama data

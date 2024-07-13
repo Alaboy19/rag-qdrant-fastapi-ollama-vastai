@@ -1,8 +1,8 @@
 tqdm 
 notebook==7.1.2
-mistralai
 openai
 elasticsearch==8.4.3
 scikit-learn
 pandas
 python-dotenv
+sentence_transformers==2.7.0
