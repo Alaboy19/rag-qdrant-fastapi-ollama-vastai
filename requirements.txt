@@ -1,8 +1,7 @@
-tqdm 
-notebook==7.1.2
-openai
-elasticsearch==8.4.3
-scikit-learn
-pandas
 python-dotenv
-sentence_transformers==2.7.0
+qdrant-client
+fastembed
+jupyterlab
+tqdm 
+ipykernel
+ruff

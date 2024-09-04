@@ -1,0 +1,22 @@
+version: '3.8'
+
+services:
+  qdrant:
+    image: qdrant/qdrant:latest  # Use the latest stable image
+    container_name: qdrant
+    ports:
+      - "6333:6333" # Expose the Qdrant service port
+    healthcheck:  # Ensure the container is healthy before starting the app
+      test: ["CMD", "curl -f http://localhost:6333 || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  fastapi-service:
+    build: .
+    depends_on:
+      - qdrant   # Ensure Qdrant is running before FastAPI starts
+    ports:
+      - "8991:8991"   # Expose FastAPI port
+    environment:
+      QDRANT_HOST: qdrant  # Use the service name as hostname for internal communication  
